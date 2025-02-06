@@ -1,10 +1,10 @@
-# Hack the Box - "Machine Name" - 10.10.10.x
+# Hack the Box - "Machine Name" - 10.10.11.x
 # Enumeration
 ## Nmap
 ### Inital Scan
 Command
 ```
-nmap -A -vv -oA enum/nmap-initial 10.10.10.
+nmap -sC -sV -vv 10.10.11.
 ```
 
 Output
@@ -15,7 +15,18 @@ Output
 ### Full Scan
 Command
 ```
-nmap -A -vv -p- -oA enum/nmap-full 10.10.10.
+nmap -sC -sV -vv -p- 10.10.11.
+```
+
+Output
+```
+
+```
+
+### UDP Scan
+Command
+```
+nmap -sU -vv 10.10.11.
 ```
 
 Output
@@ -27,7 +38,7 @@ Output
 ### Nikto
 Command
 ```
-nikto -h http://10.10.10. -o enum/nikto.txt
+nikto -h http://10.10.11.
 ```
 
 Output
@@ -35,10 +46,10 @@ Output
 
 ```
 
-### GoBuster
+### ffuf
 Command
 ```
-gobuster dir -u http://10.10.10. -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -o enum/gobuster.txt
+ffuf -ic -recursion -r -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://10.10.11.00/FUZZ
 ```
 
 Output
@@ -64,6 +75,7 @@ Command
 ```
 ifconfig;id;hostname;cat user.txt
 ```
+``
 >
 
 ## Root/Admin
@@ -71,4 +83,5 @@ Command
 ```
 ifconfig;id;hostname;cat root.txt
 ```
+``
 >
